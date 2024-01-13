@@ -1,0 +1,62 @@
+version: "3"
+
+services:
+    # fastapi:
+    #     command: "uvicorn app:app --host 0.0.0.0 --port 8000"
+    #     build: ./fastapi
+    #     restart: on-failure
+    #     volumes:
+    #         - ./fastapi/files:/usr/src/code/fastapi/files
+    #     environment:
+    #         - TZ=Europe/Moscow
+    #         - DEBUG=0
+    #         - REDIS_HOST="redis"
+    #         - REDIS_PORT=6379
+    #         - MONGODB_LINK="mongodb://mongo:mongo@mongodb:27017/"
+    #         - HOST_URL="http://194.58.103.56:9898/"
+    #     networks:
+    #         - niggers
+    #     ports:
+    #         - "9898:8000"
+    #     depends_on:
+    #         - redis
+    #         - mongodb
+
+
+    # redis_exp:
+    #     environment:
+    #         - TZ=Russia/Moscow
+    #     command: "python main.py"
+    #     build: ./redis_exp
+    #     restart: on-failure
+    #     networks:
+    #         - niggers
+    #     depends_on:
+    #         - redis
+
+    # redis:
+    #     build: ./redis
+    #     volumes:
+    #     - ./redis/redisdata:/var/lib/redis
+    #     ports:
+    #         - "6500:6379"
+    #     networks:
+    #         - niggers
+
+    mongodb:
+        networks:
+            - niggers
+        build: ./mongo
+        restart: on-failure
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - MONGO_INITDB_ROOT_USERNAME=mongo
+            - MONGO_INITDB_ROOT_PASSWORD=mongo
+        volumes:
+            - ./mongo/mongodata:/data/db
+        ports:
+            - 27029:27017
+
+networks:
+    niggers:
