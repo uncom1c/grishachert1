@@ -35,7 +35,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\repo\grishanigger\task-1\service\venv"
+VIRTUAL_ENV="C:\Users\USER\Documents\GitHub\grishachert1\task-1\service\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
